@@ -1,0 +1,44 @@
+<?
+$title = 'Alegra interface';
+$this->headTitle($title);
+
+?>
+<h1><? $this->escapeHtml($title); ?></h1>
+<h2>Bienvenido</h2>
+<h3>Para editar los contactos, utilice los botones en la parte inferior a la lista</h3>
+<div id="list_items"></div><div id="action_btns"></div>
+<p>
+	
+	<body onload="bodyload()"></body>
+	<script type="text/javascript">
+	function bodyload(){
+	data_json = JSON.parse(atob("<?php echo base64_encode($this->data_list); ?>"));
+	listContacts(data_json,"list_items");
+	}
+	showActionButtons("action_btns");
+	lang = "<?php echo $_GET['lang']; ?>"
+
+	function addContact(){
+		url = "<?= $this->url('alegra', ['action' => 'add',]) ?>"+'?lang='+lang
+		
+		window.location.href = url;
+		}
+	function editContact(){
+		id = Ext.getCmp('tabla').items.items[0].getSelection()[0].id;
+		url = "<?= $this->url('alegra', ['action' => 'edit',]) ?>"+'?id='+id+'&lang='+lang
+		window.location.href = url;
+		}
+	function deleteContact(){
+		id = Ext.getCmp('tabla').items.items[0].getSelection()[0].id;
+		Ext.Msg.alert("El contacto "+id+" será eliminado");
+		
+		url = "<?= $this->url('alegra', ['action' => 'delete',]) ?>"+'?id='+id+'&lang='+lang
+		window.location.href = url;
+		}
+	</script>
+    
+    
+   
+    
+</p>
+

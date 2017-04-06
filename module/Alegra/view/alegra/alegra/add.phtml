@@ -1,0 +1,20 @@
+<h3>Agregar un contacto</h3>
+<div id="form_01"></div>
+<script> 
+
+loadForm('form_01');
+function storeContact(){
+
+	lang = "<?php echo $_GET['lang']; ?>"
+	if(!lang){
+		lang = 'es';
+		}
+	data = btoa(JSON.stringify(collectValues()))
+	url = "<?= $this->url('alegra', ['action' => 'store',]) ?>"+'?data='+data+'&lang='+lang
+
+	window.location.href = url;
+	
+	}
+
+</script>
+

@@ -1,0 +1,22 @@
+<?php 
+//$model = new Album();
+
+ ?>
+<body onload="loadresult()">
+</body>
+<h2 id="result"><?php echo $this->result["message"]; ?></h2>
+<script type="text/javascript">
+function loadresult(){
+	
+	lang = "<?php echo $_GET['lang']; ?>"
+	if(!lang){
+		lang = 'es';
+		}
+
+	url = "<?= $this->url('alegra', ['action' => 'index',]) ?>"+'?lang='+lang
+	window.location.href = url;
+	
+	}
+</script>
+</div>
+

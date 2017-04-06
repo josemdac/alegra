@@ -1,0 +1,22 @@
+<h3>Editar un contacto</h3>
+<div id="form_01"></div>
+<script> 
+data_encoded = JSON.parse(<?php echo '\''.$this->data.'\''; ?>)
+loadForm('form_01');
+fillValues(data_encoded)
+
+function storeContact(){
+	lang = "<?php  echo $_GET['lang']; ?>"
+
+	if(!lang){
+		lang = 'es';
+		}
+	id = "<?php echo $_GET['id']; ?>"
+	data = btoa(JSON.stringify(collectValues()))
+	url = "<?= $this->url('alegra', ['action' => 'store',]) ?>"+'?id='+id+'&data="'+data+'"&lang='+lang;
+	window.location.href = url;
+	
+	}
+
+</script>
+
